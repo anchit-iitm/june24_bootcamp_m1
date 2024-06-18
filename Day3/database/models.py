@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.mutable import MutableList
-
+from datetime import datetime
 from flask_security import UserMixin, RoleMixin, AsaList, SQLAlchemyUserDatastore
 
 db = SQLAlchemy()
@@ -37,3 +37,15 @@ class User(db.Model, UserMixin):
     
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 # Compare this snippet from Day2/app.py:
+
+class Category(db.Model):
+    __tablename__ = 'category'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255), nullable=False)
+    status = db.Column(db.Boolean)
+    created_by = db.Column(db.String(255), db.ForeignKey('user.id'))
+    updated_by = db.Column(db.String(255), db.ForeignKey('user.id'), default=None)
+    created_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime, default=None)
+    delete = db.Column(db.Boolean, default=False)

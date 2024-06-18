@@ -32,5 +32,7 @@ class LocalDev(Config):
     SECURITY_TRACKABLE = True    
     SECURITY_TOKEN_AUTHENTICATION_HEADER = 'Authorization'
 
+    SECURITY_LOGIN_URL = '/ABCD'
+
 
     DEBUG = True
