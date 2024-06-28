@@ -20,4 +20,5 @@
 
 
 ### cmds to start the celery worker and beat for my app ###
-celery -A <filename>
+celery -A app.celery_app worker --loglevel=info     ---- this will start the worker  (1st)
+celery -A app.celery_app beat --loglevel=info       ---- this the task scheduler     (2nd)
